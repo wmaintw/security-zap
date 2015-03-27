@@ -1,0 +1,12 @@
+*.iml
+*.ipr
+*.iws
+
+build/*
+out/*
+
+gradle/*
+.gradle
+
+.lazybones
+gradle.properties

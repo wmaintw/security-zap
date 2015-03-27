@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ZAP Security Report of $targetWebsite</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 22px;
+        }
+        .data-table {
+            border-style: solid;
+            border-width: thin;
+            border-color: #999;
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        td, th {
+            padding: 8px;
+            text-align: left;
+        }
+        .colored {
+            background-color: #eee;
+        }
+        .normal {
+            background-color: #fff;
+        }
+        .text-index {
+            padding: 8px;
+            font-weight: bold;
+        }
+        .background-red {
+            background-color: #f2dede;
+        }
+        .background-yellow {
+            background-color: #fcf8e3;
+        }
+        .background-blue {
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+<body>
+
+<h1>ZAP Alerts</h1>
+
+<h2>1. General Information</h2>
+<table class="data-table">
+    <tr class="colored">
+        <td>Target website:</td>
+        <td>$targetWebsite</td>
+    </tr>
+    <tr class="normal">
+        <td>Report generated at:</td>
+        <td>$zapRunDate</td>
+    </tr>
+</table>
+
+<h2>2. Security Alerts Summary</h2>
+<h3>Number of alerts in total: $numberOfAlerts</h3>
+<table class="data-table">
+    <tr class="colored">
+        <th>Alerts by severity</th>
+        <th>Amount</th>
+    </tr>
+    <tr class="background-red">
+        <td>High</td>
+        <td>$numberOfHighAlerts</td>
+    </tr>
+    <tr class="background-yellow">
+        <td>Medium</td>
+        <td>$numberOfMediumAlerts</td>
+    </tr>
+    <tr class="background-blue">
+        <td>Low</td>
+        <td>$numberOfLowAlerts</td>
+    </tr>
+    <tr class="normal">
+        <td>Informational</td>
+        <td>$numberOfInformationalAlerts</td>
+    </tr>
+</table>
+
+<h2>3. Security Alerts By Classification</h2>
+<table class="data-table">
+    <tr class="colored">
+        <th>Classification</th>
+        <th>Amount</th>
+    </tr>
+
+    #foreach($classification in $alertsByClassification.entrySet())
+        #set($severity = $classification.value.severity)
+        #if ($severity == "High")
+            <tr class="background-red">
+        #elseif ($severity == "Medium")
+            <tr class="background-yellow">
+        #elseif ($severity == "Low")
+            <tr class="background-blue">
+        #else
+            <tr class="normal">
+        #end
+
+        <td>$classification.key</td>
+        <td>$classification.value.amount</td>
+    </tr>
+    #end
+
+</table>
+
+<h2>4. Security Alerts Details</h2>
+
+#foreach($alert in $alerts)
+    <div class="text-index">Alert: $velocityCount</div>
+    <table class="data-table">
+        <tr class="colored">
+            <td>Alert</td>
+            <td>$alert.alert</td>
+        </tr>
+        <tr class="normal">
+            <td>Risk</td>
+            <td>$alert.risk</td>
+        </tr>
+        <tr class="colored">
+            <td>Reliability</td>
+            <td>$alert.reliability</td>
+        </tr>
+        <tr class="normal">
+            <td>URL</td>
+            <td>$alert.url</td>
+        </tr>
+        <tr class="colored">
+            <td>Description</td>
+            <td>$alert.description.replaceAll("\n", "<br />")</td>
+        </tr>
+        <tr class="normal">
+            <td>Param</td>
+            <td>$alert.param</td>
+        </tr>
+        <tr class="colored">
+            <td>Attack</td>
+            <td>$esc.html($alert.attack)</td>
+        </tr>
+        <tr class="normal">
+            <td>Evidence</td>
+            <td>$esc.html($alert.evidence)</td>
+        </tr>
+        <tr class="colored">
+            <td>Solution</td>
+            <td>$alert.solution.replaceAll("\n", "<br />")</td>
+        </tr>
+        <tr class="normal">
+            <td>Reference</td>
+            <td>$alert.reference.replaceAll("\n", "<br />")</td>
+        </tr>
+        <tr class="colored">
+            <td>Other</td>
+            <td>$alert.other.replaceAll("\n", "<br />")</td>
+        </tr>
+        <tr class="normal">
+            <td>CweId</td>
+            <td>$alert.cweId</td>
+        </tr>
+        <tr class="colored">
+            <td>WascId</td>
+            <td>$alert.wascId</td>
+        </tr>
+    </table>
+#end
+
+</body>
+</html>
