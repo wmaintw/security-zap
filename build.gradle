@@ -54,12 +54,12 @@ uploadArchives {
                 name 'Gradle zap plugin'
                 packaging 'jar'
                 description 'A gradle plugin that help you integrate ZAP Proxy into your CI server'
-                url 'https://github.com/wmaintw/zap-plugin'
+                url 'https://github.com/wmaintw/security-zap'
 
                 scm {
-                    connection 'https://github.com/wmaintw/zap-plugin.git'
-                    developerConnection 'https://github.com/wmaintw/zap-plugin.git'
-                    url 'https://github.com/wmaintw/zap-plugin'
+                    connection 'https://github.com/wmaintw/security-zap.git'
+                    developerConnection 'https://github.com/wmaintw/security-zap.git'
+                    url 'https://github.com/wmaintw/security-zap'
                 }
 
                 licenses {
@@ -94,9 +94,9 @@ plugindev {
     authorId 'wmaintw'
     authorName 'Wei Ma'
     authorEmail 'wma@thoughtworks.com'
-    projectUrl 'https://github.com/wmaintw/zap-plugin'
-    projectIssuesUrl 'https://github.com/wmaintw/zap-plugin/issues'
-    projectVcsUrl 'https://github.com/wmaintw/zap-plugin'
+    projectUrl 'https://github.com/wmaintw/security-zap'
+    projectIssuesUrl 'https://github.com/wmaintw/security-zap/issues'
+    projectVcsUrl 'https://github.com/wmaintw/security-zap.git'
     projectInceptionYear '2015'
     done()
 }
