@@ -25,7 +25,7 @@ apply plugin: "security-zap"
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath(
