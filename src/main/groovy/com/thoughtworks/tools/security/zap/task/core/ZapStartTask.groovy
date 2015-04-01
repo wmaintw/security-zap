@@ -15,7 +15,7 @@ class ZapStartTask extends DefaultTask {
     }
 
     def launchZapServer() throws IOException {
-        ProcessBuilder builder = new ProcessBuilder("${project.zap.server.home}/zap.${determineFileExtension()}",
+        ProcessBuilder builder = new ProcessBuilder("${project.zap.server.home}zap.${determineFileExtension()}",
                 "-config", "api.key=${project.zap.server.apiKey}",
                 "-daemon")
         builder.start();
