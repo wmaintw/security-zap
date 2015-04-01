@@ -4,4 +4,5 @@ class TargetExtension {
     String url
     List<String> exclude
     String crawlFrom
+    int amountOfReportFilesToRetrain = 10
 }

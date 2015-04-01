@@ -37,6 +37,16 @@ signing {
     sign configurations.archives
 }
 
+// for local debug use only
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri('../repo'))
+//        }
+//    }
+//}
+
+// upload to maven central
 uploadArchives {
     repositories {
         mavenDeployer {

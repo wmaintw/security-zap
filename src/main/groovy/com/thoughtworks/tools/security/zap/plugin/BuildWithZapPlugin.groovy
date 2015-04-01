@@ -4,6 +4,7 @@ import com.thoughtworks.tools.security.zap.extension.ScanExtension
 import com.thoughtworks.tools.security.zap.extension.ZapConfigurationExtension
 import com.thoughtworks.tools.security.zap.task.ascan.ZapScanStatusTask
 import com.thoughtworks.tools.security.zap.task.ascan.ZapScanTask
+import com.thoughtworks.tools.security.zap.task.core.ZapPurgeReportTask
 import com.thoughtworks.tools.security.zap.task.spider.ZapSpiderResultTask
 import com.thoughtworks.tools.security.zap.extension.ServerExtension
 import com.thoughtworks.tools.security.zap.extension.TargetExtension
@@ -42,5 +43,7 @@ class BuildWithZapPlugin implements Plugin<Project> {
         project.tasks.getByName("zapScan").dependsOn(project.tasks.getByName("zapCrawl"))
         
         project.tasks.create("zapScanStatus", ZapScanStatusTask)
+
+        project.tasks.create("zapPurgeReport", ZapPurgeReportTask)
     }
 }
