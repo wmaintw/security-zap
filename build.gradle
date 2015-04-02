@@ -92,7 +92,7 @@ uploadArchives {
 }
 
 group = 'com.thoughtworks.tools'
-version = '1.0.3'
+version = '1.0.4'
 
 plugindev {
     pluginId = 'security.zap'
