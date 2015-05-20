@@ -29,7 +29,7 @@ buildscript {
     }
     dependencies {
         classpath(
-                'com.thoughtworks.tools:security-zap:1.0.1'
+                'com.thoughtworks.tools:security-zap:1.0.4'
         )
     }
 }
