@@ -20,11 +20,15 @@ class ZapStartTask extends DefaultTask {
         if (IS_OS_WINDOWS) {
             builder = new ProcessBuilder("zap.bat",
                     "-config", "api.key=${project.zap.server.apiKey}",
+                    "-config", "proxy.ip=${project.zap.server.host}",
+                    "-config", "proxy.port=${project.zap.server.port}",
                     "-daemon")
             builder.directory(new File("${project.zap.server.home}"))
         } else {
-             builder = new ProcessBuilder("${project.zap.server.home}zap.${determineFileExtension()}",
+            builder = new ProcessBuilder("${project.zap.server.home}zap.${determineFileExtension()}",
                     "-config", "api.key=${project.zap.server.apiKey}",
+                    "-config", "proxy.ip=${project.zap.server.host}",
+                    "-config", "proxy.port=${project.zap.server.port}",
                     "-daemon")
         }
 
@@ -42,7 +46,8 @@ class ZapStartTask extends DefaultTask {
 
             try {
                 status = client.get(path: "/").status
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
 
             if (status == 200) {
                 println "ZAP started"
