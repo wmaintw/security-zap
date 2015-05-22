@@ -15,24 +15,24 @@ class ZapStartTask extends DefaultTask {
     }
 
     def launchZapServer() throws IOException {
-        ProcessBuilder builder = null
+        def zapCommand = "${parsePath()}/zap${determineFileExtension()}"
 
-        if (IS_OS_WINDOWS) {
-            builder = new ProcessBuilder("zap.bat",
-                    "-config", "api.key=${project.zap.server.apiKey}",
-                    "-config", "proxy.ip=${project.zap.server.host}",
-                    "-config", "proxy.port=${project.zap.server.port}",
-                    "-daemon")
-            builder.directory(new File("${project.zap.server.home}"))
-        } else {
-            builder = new ProcessBuilder("${project.zap.server.home}zap.${determineFileExtension()}",
-                    "-config", "api.key=${project.zap.server.apiKey}",
-                    "-config", "proxy.ip=${project.zap.server.host}",
-                    "-config", "proxy.port=${project.zap.server.port}",
-                    "-daemon")
-        }
+        ProcessBuilder builder = new ProcessBuilder(zapCommand,
+                "-config", "api.key=${project.zap.server.apiKey}",
+                "-config", "proxy.ip=${project.zap.server.host}",
+                "-config", "proxy.port=${project.zap.server.port}",
+                "-daemon")
 
         builder.start();
+    }
+
+    def parsePath() {
+        def originalPath = project.zap.server.home
+        if (originalPath.substring(originalPath.length() - 1) == '/') {
+            originalPath = originalPath.substring(0, originalPath.length() - 1)
+        }
+
+        originalPath
     }
 
     def verifyZapStarted() {
@@ -73,6 +73,6 @@ class ZapStartTask extends DefaultTask {
     }
 
     def determineFileExtension() {
-        IS_OS_WINDOWS ? 'bat' : 'sh'
+        IS_OS_WINDOWS ? '.bat' : '.sh'
     }
 }
