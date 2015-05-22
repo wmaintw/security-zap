@@ -29,7 +29,7 @@ buildscript {
     }
     dependencies {
         classpath(
-                'com.thoughtworks.tools:security-zap:1.0.4'
+                'com.thoughtworks.tools:security-zap:1.0.5'
         )
     }
 }
@@ -40,8 +40,8 @@ buildscript {
 ```gradle
 zap {
     server {
-        // ZAP的安装目录(绝对路径)，例如 /Users/wma/Downloads/security/zap-for-linux/ZAP_2.3.1/
-        home = "/absolute/path/to/ZAP/install/folder/"
+        // ZAP的安装目录(绝对路径)，例如 /Users/wma/Downloads/security/zap-for-linux/ZAP_2.3.1
+        home = "/absolute/path/to/ZAP/install/folder"
     }
 
     target {
